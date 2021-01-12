@@ -101,18 +101,41 @@ print("my_list =", my_list)
 
 print("\nTask 6")
 my_str = "43 больше чем 34 но меньше чем 56"
+my_list = list(my_str)
+print(my_list)
+print(len(my_list))
+print(len(my_str))
+print(range(len(my_str)-1))
+my_number = ""
+index = 0
+print("index=", index)
+my_number_list = []
+print("my_number_list =", my_number_list)
+for i in range(33):
+    print("i =", i)
+    if my_list[0].isdigit() and i == 0:
+        print("i =", i, "Trace 1")
+        print(my_list[0])
+        my_number = my_number + my_list[0]
+        print(my_number)
+# and i != range(stop)
+    elif my_list[i].isdigit() and my_list[i - 1].isdigit():
+        print("i =", i, "Trace 2")
+        my_number = my_number + my_list[i]
+        print(my_number)
+    elif my_list[i].isdigit() and not my_list[i - 1].isdigit():
+        print("i =", i, "Trace 3")
+        my_number = my_list[i]
+        print(my_number)
+        # if i
+    elif not my_list[i].isdigit() and my_list[i - 1].isdigit():
+        print("i =", i, "Trace 4")
+        my_number_list.append(my_number)
+        index += 1
+        print("index= ", index)
+        print(my_number_list)
 
-# for index in my_str:
-    # print(index)
-    # if index.isdigit():
-    #     my_number = index
-    #     print(my_number)
-#
-my_list_from_str = list(my_str)
-print(my_list_from_str)
-
-for index in my_list_from_str:
-    print(index)
+print(my_number_list)
 
 
 # 7. Дана строка my_str. Разделите эту строку на пары из двух символов и поместите эти пары в список.
