@@ -196,16 +196,23 @@ elif my_str_1 == "" and my_str_2 == "":
 
 print("\nTask 8")
 
-my_key_list = ['Фамилия', 'Имя', 'Возраст', 'Проживание', 'Страна', 'Город', 'Улица', 'Работа', 'Наличие',
-               'Должность']
-my_value_list = ['Иванов','Иван','33',' ','Украина','Днепр','Павла Ниринберга 10',' ','Да','програмист']
+adress_key_list = ['Страна', 'Город', 'Улица']
+work_key_list = ['Наличие', 'Должность']
 
-print(my_key_list)
-print(my_value_list)
+adress_list = ['Украина', 'Днепр', 'Павла Ниринберга 10']
+work_list = ['Да', 'програмист']
 
-my_dictionary = dict.fromkeys(my_key_list,'')
-print(my_dictionary)
-print(my_dictionary.items())
+DICT_ADRESS = dict(zip(adress_key_list, adress_list))
+DICT_WORK = dict(zip(work_key_list, work_list))
+
+my_key_list = ['Фамилия', 'Имя', 'Возраст', 'Проживание', 'Работа']
+my_value_list = ['Иванов', 'Иван', '33', DICT_ADRESS, DICT_WORK]
+
+DICT_STRUCTURE = dict(zip(my_key_list, my_value_list))
+
+# print(DICT_ADRESS)
+# print(DICT_WORK)
+print(DICT_STRUCTURE)
 
 ####################################################################################################
 # 9. Описать с помощью словаря следующую структуру (рецепт ненастоящего торта,
