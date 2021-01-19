@@ -13,9 +13,9 @@ my_new_list = []
 
 for i, str in enumerate(my_list):
     if i % 2 == 0:
-        my_new_list.append(str[::-1])
-    else:
         my_new_list.append(str)
+    else:
+        my_new_list.append(str[::-1])
 
 print("my_list =", my_list)
 print("my_new_list =", my_new_list)
@@ -172,6 +172,7 @@ for value in more_length_set:
 
 print("my_str_1:", my_str_1)
 print("my_str_2:", my_str_2)
+
 if my_list != []:
     print("Общие символы, которые встречаются по одному разу в строках:", my_list)
 elif my_str_1 == "" and my_str_2 != "":
@@ -243,5 +244,3 @@ CAKE_RECIPE_DICT = {'Составляющие':
 
 ####################################################################################################
 print("\nThat is all")
-
-
