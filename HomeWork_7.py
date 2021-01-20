@@ -118,22 +118,25 @@ elif len(max_name_index) > 1:
 
 print("\nTask 5")
 
-my_dict_1 = {'key0': 0, 'key1': 1, 'key2': 2, 'key3': 3}
-my_dict_2 = {'key2': 2, 'key3': 3, 'key4': 4}
+my_dict_1 = {'key0': '1_0', 'key1': '1_1', 'key2': '1_2', 'key3': '1_3'}
+my_dict_2 = {'key2': '2_2', 'key3': '2_3', 'key4': '2_4'}
 
-my_list_1 = list(my_dict_1.keys())
-my_list_2 = list(my_dict_2.keys())
+my_key_list_1 = list(my_dict_1.keys())
+my_key_list_2 = list(my_dict_2.keys())
 
-my_list = my_list_1 + my_list_2
+my_value_list_1 = list(my_dict_1.values())
+my_value_list_2 = list(my_dict_2.values())
+
+my_key_list = my_key_list_1 + my_key_list_2
 
 print('Даны словари:')
 print('my_dict_1 = {}'.format(my_dict_1))
 print('my_dict_2 = {}'.format(my_dict_2))
-print('\n5a) список из ключей, которые есть в обоих словарях: ', my_list)
+print('\n5 a) список из ключей, которые есть в обоих словарях: ', my_key_list)
 
-diffrence_keys_1 = list(set(my_list_1) - set(my_list_2))
+diffrence_keys_1 = list(set(my_key_list_1) - set(my_key_list_2))
 
-print('\n5б) список из ключей, которые есть в первом, но нет во втором словаре:', diffrence_keys_1)
+print('\n5 б) список из ключей, которые есть в первом, но нет во втором словаре:', diffrence_keys_1)
 
 my_new_dict = {}
 
@@ -141,5 +144,28 @@ for i in diffrence_keys_1:
     new_dict = {i: my_dict_1[i]}
     my_new_dict.update(new_dict)
 
-print('\n5в) Новый словарь из пар {ключ:значение}, для ключей, которые есть в первом, но нет во втором словаре:',
+print('\n5 в) Новый словарь из пар {ключ:значение}, для ключей, которые есть в первом, но нет во втором словаре:',
       my_new_dict)
+
+keys_set = set(my_key_list)
+
+union_dict = {}
+
+for my_key in keys_set:
+
+    if my_key not in my_dict_1 and my_key in my_dict_2:
+        union_dict.update({my_key: my_dict_2.get(my_key)})
+
+    elif my_key in my_dict_1 and my_key not in my_dict_2:
+        union_dict.update({my_key: my_dict_1.get(my_key)})
+
+    elif my_key in my_dict_1 and my_key in my_dict_2:
+        union_dict.update({my_key: [my_dict_1.get(my_key), my_dict_2.get(my_key)]})
+
+print('''\n5 г) Объединить эти два словаря в новый словарь по правилу:
+- если ключ есть только в одном из двух словарей - поместить пару ключ:значение,
+- если ключ есть в двух словарях - поместить пару 
+{ключ: [значение_из_первого_словаря, значение_из_второго_словаря]}\n\n''', union_dict)
+
+####################################################################################################
+print("\nThat is all")
