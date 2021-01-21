@@ -3,8 +3,17 @@
 # Названия интернет доменов поместить в список (названия сохранить без точки).
 #
 file_data = open('domains.txt', 'r')
-file_data.read()
-print(file_data.read())
+str_file_data = file_data.read()
+
+# print(type(str_file_data))
+# print(str_file_data)
+# print(str_file_data.replace('.', ''))
+# print(str_file_data.replace('.', '').split('\n'))
+
+my_domains_list = str_file_data.replace('.', '').split('\n')
+
+print(my_domains_list)
+
 file_data.close()
 
 ####################################################################################################
