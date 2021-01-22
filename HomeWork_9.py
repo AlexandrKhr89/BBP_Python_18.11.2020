@@ -1,3 +1,6 @@
+import random
+import string
+
 ########################################################################
 # Цель задания - создать функции, которые будут генерировать случайные
 # данные нужного формата # для записи в файлы разных типов.
@@ -14,6 +17,48 @@
 # Цифры не должны быть частями слов, а стоять отдельно.
 # Знаки препинания всегда идут в конце слова.
 #
+print("\nTask 1/4")
+
+
+def my_word():
+    my_word = random.choice(string.ascii_uppercase)
+    for i in range(0, random.randint(2, 12)):
+        my_word += random.choice(string.ascii_lowercase)
+    return my_word
+
+
+def my_number():
+    my_number = str(random.choice(range(0, 9)))
+    my_end_number_range = range(0, random.randint(0, 9))
+    for i in my_end_number_range:
+        my_number += str(random.choice(range(0, 9)))
+    return my_number
+
+
+def function_1():
+    my_end_range = range(0, random.randint(100, 999))
+
+    my_str = ' '
+
+    for i in my_end_range:
+        my_list = []
+        my_punctuation_list = [',', '\n', '.', '!', '?', ';', ':', '', '', '', '']
+
+        my_list.append(my_word() + random.choice(my_punctuation_list))
+        my_list.append(my_number() + random.choice(my_punctuation_list))
+
+        part_str = ' '.join(my_list[::])
+        if (len(my_str) + len(part_str)) < 999:
+            my_str += ' ' + part_str
+        else:
+            print('\nlength my_str = ', len(my_str))
+            break
+
+    return my_str
+
+
+print('my_str :\n\n', function_1())
+
 ########################################################################
 # Функция 2. Создает данные для записи в файл json.
 # Создает и возвращает словарь со случайным количеством ключей
