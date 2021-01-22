@@ -70,6 +70,46 @@ print('my_str :\n\n', function_1())
 # или True/False. Выбор значения должен быть равновероятным.
 # Т.е. вероятность того, что значение будет целым
 # такая же, как и вероятность того, что будет типа float или типа bool.
+
+print("\nTask 2/4")
+
+
+def my_random_key():
+    my_str = string.ascii_lowercase
+    # print(my_str)
+    key = ''
+    for i in range(0, 5):
+        # print(i)
+        key += random.choice(my_str)
+        # print(key)
+    return key
+
+
+print('my_random_key():', my_random_key())
+
+
+def function_2():
+    key_count = random.randint(5, 20)
+    print('key_count =', key_count, type(key_count))
+    my_int = random.randint(-100, 100)
+    print('my_int =', my_int)
+    my_float = random.random()
+    print('my_float =', my_float)
+    my_value_list = [True, False, my_float, my_int]
+    my_dict = {}
+    print('my_dict =', my_dict)
+    print('my_random_key():', my_random_key())
+
+    for i in range(0, key_count):
+        # print(i)
+        # print('my_random_key():', my_random_key())
+        my_dict.update({my_random_key(): random.choice(my_value_list)})
+        # print(i, 'my_dict =', my_dict)
+    return my_dict
+
+
+print('Данные для записи в файл json:\n', function_2())
+
 ########################################################################
 # Функция 3. Создает данные для записи в файл csv.
 # Создает и возвращает список длинны n внутренних списков длинны m
