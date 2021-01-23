@@ -1,9 +1,13 @@
 import random
 import string
+import os.path
+import csv
+import json
+from os import path
 
 ########################################################################
 # Цель задания - создать функции, которые будут генерировать случайные
-# данные нужного формата # для записи в файлы разных типов.
+# данные нужного формата для записи в файлы разных типов.
 #
 # Функция 1. Создает данные для записи в файл txt.
 # Функция генерирует и возвращает строку случайной длинны
@@ -51,7 +55,7 @@ def function_1():
         if (len(my_str) + len(part_str)) < 999:
             my_str += ' ' + part_str
         else:
-            print('\nlength my_str = ', len(my_str))
+            # print('\nlength my_str = ', len(my_str))
             break
 
     return my_str
@@ -85,23 +89,23 @@ def my_random_key():
     return key
 
 
-print('my_random_key():', my_random_key())
+# print('my_random_key():', my_random_key())
 
 
 def function_2():
     key_count = random.randint(5, 20)
-    print('key_count =', key_count, type(key_count))
+    # print('key_count =', key_count, type(key_count))
     my_int = random.randint(-100, 100)
-    print('my_int =', my_int)
+    # print('my_int =', my_int)
     my_float = random.random()
-    print('my_float =', my_float)
+    # print('my_float =', my_float)
     my_value_list = [True, False, my_float, my_int]
     my_dict = {}
-    print('my_dict =', my_dict)
-    print('my_random_key():', my_random_key())
+    # print('my_dict =', my_dict)
+    # print('my_random_key():', my_random_key())
 
     for i in range(0, key_count):
-        # print(i)
+        # print('i=', i)
         # print('my_random_key():', my_random_key())
         my_dict.update({my_random_key(): random.choice(my_value_list)})
         # print(i, 'my_dict =', my_dict)
@@ -117,6 +121,36 @@ print('Данные для записи в файл json:\n', function_2())
 # Числа n и m выбираются случайно в диапазоне от 3 до 10.
 # В таблицу записывать значения только 0 или 1.
 # Заголовка у таблицы нет.
+
+print("\nTask 3/4")
+
+
+def random_value():
+    return random.randint(0, 1)
+
+
+def create_row(m):
+    my_list = []
+    for i in range(0, m):
+        my_list.append(random_value())
+    return my_list
+
+
+def function_3():
+    m_row = random.randint(3, 10)
+    n_column = random.randint(3, 10)
+    # print('m_row=', m_row)
+    # print('n_column=', n_column)
+    my_list = []
+    for my_row in range(0, m_row):
+        # print('m_row =', my_row, 'in range(0, m_row)=', range(0, m_row))
+        my_list.append(create_row(n_column))
+
+    return my_list
+
+
+print(function_3())
+
 ########################################################################
 # А теперь основное задание:
 # Написать функцию generate_and_write_file которая принимает один
@@ -125,3 +159,62 @@ print('Данные для записи в файл json:\n', function_2())
 # данные для записи и записать в данный файл.
 # Если расширение не соответствует заданным,
 # то вывести текст "Unsupported file format"
+
+print("\nTask 4/4")
+
+
+def write_txt_file(file_name: str):
+    print('file_name for write_txt_file() =', file_name)
+    my_txt_file_for_HW_9 = open(file_name, 'w')
+    my_txt_file_for_HW_9.write(function_1())
+    my_txt_file_for_HW_9.close()
+    return print('Файл {} записан для основного задания '
+                 'домашней работы № 9 '.format(file_name))
+
+
+def write_csv_file(file_name: str):
+    with open(file_name, "w") as csv_file:
+        writer = csv.writer(csv_file, delimiter=";")
+        writer.writerows(function_3())
+    return print('Файл {} записан для основного задания '
+                 'домашней работы № 9 '.format(file_name))
+
+
+def write_json_file(file_name: str):
+    with open(file_name, "w") as json_file:
+        json.dump(function_2(), json_file, indent=2)
+    return print('Файл {} записан для основного задания '
+                 'домашней работы № 9 '.format(file_name))
+
+
+
+def generate_and_write_file(file_name):
+    # print('os.path.isfile()=',
+    #       os.path.isfile('my_txt_for_write_txt_file.txt')
+    full_name = path.basename(file_name)
+    name = path.splitext(full_name)[0]
+    name_ext = path.splitext(full_name)[1]
+    # print('\nanaliz_file_name(): '
+    #       '\nname = {} '
+    #       '\nname_ext ={}'.format(name, name_ext))
+
+    if name_ext == '.json':
+        print(name_ext)
+        write_json_file(file_name)
+    elif name_ext == '.txt':
+        print(name_ext)
+        write_txt_file(file_name)
+    elif name_ext == '.csv':
+        print(name_ext)
+        write_csv_file(file_name)
+    else:
+        print("Unsupported file format")
+    return None
+
+
+generate_and_write_file('my_json_for_generate_and_write_file.json')
+
+generate_and_write_file('Unsupported file format.docx')
+
+########################################################################
+print("\nThat is all")
