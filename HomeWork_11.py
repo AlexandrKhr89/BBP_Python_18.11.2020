@@ -21,6 +21,9 @@ def read_data_file(file_name: str):
 
 read_data_file('data.json')
 
+print(type(read_data_file('data.json')))
+print(len(read_data_file('data.json')))
+
 ########################################################################
 # 2. Написать функцию сортировки данных по ФАМИЛИИ в поле "name" (у тех у кого она есть).
 # Например для Rene Descartes фамилия это Descartes, у Pierre de Fermat - Fermat и т.д.
@@ -41,11 +44,39 @@ def sort_by_family(file_name: str):
     return new_dict_list
 
 
-
-# sort_by_family()
-print(sort_by_family('data.json'))
+for i in sort_by_family('data.json'):
+    print(i)
 
 ########################################################################
 # 3. Написать функцию сортировки по дате смерти из поля "years".
 # Обратите внимание на сокращение BC. - это означает до н.э.
+print("\nTask 3/4")
+
+
+def key_sorted_by_years(obj_dict):
+    print('key_sorted_by_years(obj_dict):', obj_dict["years"])
+    print('key_sorted_by_years(obj_dict):', 'len(obj_dict["years"])', len(obj_dict["years"]))
+    print('type(obj_dict["years"])',type(obj_dict["years"]))
+    return obj_dict["years"]
+
+
+def sort_by_years(file_name: str):
+    # print('            2 sort_by_family:', 'type =', type(read_data_file(file_name)))
+    # print('            2 sort_by_family:', 'len =', len(read_data_file(file_name)))
+    death_years_list = []
+    for i in range(0, len(read_data_file(file_name))):
+        print(i, read_data_file(file_name)[i].get('years'))
+        death_years_list.append(read_data_file(file_name)[i].get('years'))
+
+
+    new_dict_list = sorted(read_data_file(file_name), key=key_sorted_by_years)
+    # print('          2  new_dict_list:', new_dict_list)
+    return new_dict_list
+
+
+for i in sort_by_years('data.json'):
+    # print(i)
+    pass
+
+########################################################################
 # 4. Написать функцию сортировки по количеству слов в поле "text"
